@@ -85,10 +85,12 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 from-group">
                     <label for="priority">Priority</label>
-                    <select
+                    <select v-model="selectedPriority"
                             id="priority"
                             class="form-control">
-                        <option></option>
+                            <!-- :selected="priority == 'Medium'" na option -->
+                        <option v-bind:key="priority" v-for="priority in priorities"
+                                >{{ priority }}</option>
                     </select>
                 </div>
             </div>
@@ -118,7 +120,7 @@
                             <li v-bind:key="item" v-for="item in sendMail">{{ item }}</li>
                         </ul>
                         <p>Gender: {{ gender }}</p>
-                        <p>Priority:</p>
+                        <p>Priority: {{ selectedPriority }} </p>
                         <p>Switched:</p>
                     </div>
                 </div>
@@ -139,7 +141,9 @@ export default {
         },
         message:"This is a simple message",
         sendMail: [],
-        gender: 'Male'
+        gender: 'Male',
+        selectedPriority: 'High',
+        priorities: ['High','Medium', 'Low']
 
       }
     }
